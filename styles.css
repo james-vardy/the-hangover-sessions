@@ -216,6 +216,9 @@ p a:hover,
   padding: 1.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .artist-card:hover {
@@ -247,12 +250,14 @@ p a:hover,
 .artist-bio {
   color: var(--secondary-color);
   line-height: 1.7;
+  flex-grow: 1;
 }
 
 .artist-social {
-  margin-top: 1rem;
+  margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
 }
 
 .artist-social a {
@@ -519,6 +524,10 @@ p a:hover,
   background: var(--light-gray);
   border-radius: 8px;
   transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: center;
 }
 
 .link-card:hover {
@@ -531,6 +540,8 @@ p a:hover,
   font-weight: 600;
   font-size: 1.1rem;
   transition: color 0.3s;
+  margin-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .link-card a:hover {
@@ -538,9 +549,10 @@ p a:hover,
 }
 
 .link-card p {
-  margin-top: 0.5rem;
+  margin-top: 0;
   color: var(--secondary-color);
   font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 /* Footer */
@@ -622,17 +634,8 @@ footer {
 .link-card img {
   max-width: 120px;
   height: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   border-radius: 4px;
-}
-
-.link-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2rem;
-  background: var(--light-gray);
-  border-radius: 8px;
-  transition: transform 0.3s;
+  flex-grow: 1;
+  object-fit: contain;
 }
