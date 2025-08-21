@@ -5,58 +5,28 @@
     "displayDate": "September 21, 2025",
     "bio": "Romy Taylor is a Leeds-based singer, songwriter and performer. Romy's music mixes contemporary jazz instrumentals with heartfelt lyrics and vocals into epic ballads and groovy tunes. Taking inspiration from artists like Nai Palm, Lucy Rose, Björk and Minnie Riperton, she combines an atmospheric feel with catchy sing-along melodies.",
     "image": "assets/artists/romy-taylor.webp",
-    "website": "",
+    "website": "https://linktr.ee/romytaylor",
     "spotify": "https://open.spotify.com/artist/7hwxe1biG7DJxyco5ecLKT",
-    "instagram": "https://www.instagram.com/romytaylorr"
+    "instagram": "https://www.instagram.com/romytaylorr/"
   },
   {
     "name": "Michael Cable",
-    "date": "2025-19-27",
+    "date": "2025-09-27",
     "displayDate": "September 27, 2025",
-    "bio": "Psychedelic indie duo bringing dreamy soundscapes and hypnotic rhythms to Sunday mornings. Their blend of shoegaze and folk creates an otherworldly atmosphere perfect for a hangover cure.",
-    "image": "https://via.placeholder.com/400x300/f0f0f0/666666?text=The+Velvet+Ghosts",
+    "bio": "Local legend Michael Cable of Vehicle fame, brings his witty musings to a special Saturday edition of The Hangover Sessions.",
+    "image": "assets/artists/michael-cable.jpeg",
     "website": "",
     "spotify": "",
-    "instagram": ""
+    "instagram": "https://www.instagram.com/mcable/"
   },
   {
-    "name": "Marcus King",
-    "date": "2025-10-19",
-    "displayDate": "October 19, 2025",
-    "bio": "Jazz-influenced guitarist and vocalist Marcus King brings smooth grooves and soulful melodies. His performances blend contemporary R&B with classic jazz standards, creating a perfect Sunday morning vibe.",
-    "image": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Marcus+King",
+    "name": "Drury Hill",
+    "date": "2025-09-28",
+    "displayDate": "September 28, 2025",
+    "bio": "Nottigham soft Rock outfit Drury Hill, named after a famous medieval Nottingham street, bring beautiful songwriting with male/female dual vocals.",
+    "image": "assets/artists/drury-hill.jpg",
     "website": "",
     "spotify": "",
-    "instagram": ""
-  },
-  {
-    "name": "Luna Sinclair",
-    "date": "2025-11-02",
-    "displayDate": "November 2, 2025",
-    "bio": "Indie folk artist Luna Sinclair weaves ethereal melodies with introspective lyrics. Her haunting voice and delicate guitar work create intimate sonic landscapes perfect for contemplative Sunday mornings.",
-    "image": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Luna+Sinclair",
-    "website": "",
-    "spotify": "",
-    "instagram": ""
-  },
-  {
-    "name": "The Midnight Owls",
-    "date": "2025-11-16",
-    "displayDate": "November 16, 2025",
-    "bio": "Alt-country trio bringing harmony-rich storytelling and warm acoustic arrangements. Their blend of Americana and indie rock creates the perfect soundtrack for coffee and recovery.",
-    "image": "https://via.placeholder.com/400x300/f0f0f0/666666?text=The+Midnight+Owls",
-    "website": "",
-    "spotify": "",
-    "instagram": ""
-  },
-  {
-    "name": "Echo Rivers",
-    "date": "2025-11-30",
-    "displayDate": "November 30, 2025",
-    "bio": "Electronic-influenced singer-songwriter Echo Rivers combines organic instruments with subtle synths and loops. Their experimental approach to folk music creates unique atmospheric experiences.",
-    "image": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Echo+Rivers",
-    "website": "",
-    "spotify": "",
-    "instagram": ""
+    "instagram": "https://www.instagram.com/druryhillhq/"
   }
 ]
