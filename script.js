@@ -157,10 +157,39 @@ async function loadArchiveEpisodes() {
         .map((song) => `<li>${song}</li>`)
         .join("");
 
+      // Extract YouTube video ID from URL and use YouTube thumbnail
+      function getYouTubeThumbnail(videoUrl) {
+        // Extract video ID from various YouTube URL formats
+        const regex =
+          /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+        const match = videoUrl.match(regex);
+
+        if (match && match[1]) {
+          // Use maxresdefault for highest quality, fallback to hqdefault if not available
+          return `https://img.youtube.com/vi/${match[1]}/maxresdefault.jpg`;
+        }
+
+        // Fallback to logo if no valid YouTube URL
+        return "./assets/logo.png";
+      }
+
+      const thumbnailSrc =
+        episode.thumbnail && episode.thumbnail.trim() !== ""
+          ? episode.thumbnail
+          : getYouTubeThumbnail(episode.videoUrl);
+
       archiveCard.innerHTML = `
         <div class="archive-image-container">
-          <a href="${episode.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
-            <img src="${episode.thumbnail}" alt="${episode.artist}" class="archive-image">
+          <a href="${
+            episode.videoUrl
+          }" target="_blank" rel="noopener noreferrer" class="video-link">
+            <img src="${thumbnailSrc}" alt="${
+        episode.artist
+      }" class="archive-image" onerror="this.src='https://img.youtube.com/vi/${
+        episode.videoUrl.match(
+          /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+        )?.[1]
+      }/hqdefault.jpg'; if(this.onerror) { this.onerror=null; this.src='./assets/logo.png'; }">
             <div class="play-overlay">▶</div>
           </a>
         </div>
@@ -181,7 +210,9 @@ async function loadArchiveEpisodes() {
           </div>
           
           <div class="archive-actions">
-            <a href="${episode.videoUrl}" target="_blank" rel="noopener noreferrer" class="watch-button">
+            <a href="${
+              episode.videoUrl
+            }" target="_blank" rel="noopener noreferrer" class="watch-button">
               Watch Full Session
             </a>
           </div>
