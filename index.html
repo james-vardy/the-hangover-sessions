@@ -213,6 +213,64 @@
         <p>&copy; 2025 The Hangover Sessions. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Mailing List Popup -->
+    <div id="mailingListModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close-modal" id="closeModal" aria-label="Close modal">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <h3>Stay in the Loop!</h3>
+          <p>
+            Get notified about upcoming Hangover Sessions, new artists, and
+            exclusive content.
+          </p>
+
+          <!-- 
+            IMPORTANT: Replace with your mailing list service endpoint
+            Options:
+            - Mailchimp: Use their embedded form code
+            - ConvertKit: Use their form embed
+            - Substack: Use their subscription form
+            - Other services: Update action URL accordingly
+          -->
+          <form
+            class="newsletter-form"
+            action="https://your-mailing-service.com/subscribe"
+            method="POST"
+          >
+            <div class="form-group">
+              <input
+                type="email"
+                id="newsletter-email"
+                name="email"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <input
+                type="text"
+                id="newsletter-name"
+                name="name"
+                placeholder="Your name (optional)"
+              />
+            </div>
+            <button type="submit" class="newsletter-submit">
+              Join the Sessions
+            </button>
+          </form>
+
+          <p class="modal-footer-text">
+            No spam, just good vibes. Unsubscribe anytime.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js" defer></script>
   </body>
 </html>

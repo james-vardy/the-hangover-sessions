@@ -133,4 +133,90 @@ function loadLatestVideo() {
 document.addEventListener("DOMContentLoaded", function () {
   loadUpcomingArtists();
   loadLatestVideo();
+  initializeMailingListPopup();
 });
+
+// Mailing List Popup Functionality
+function initializeMailingListPopup() {
+  const modal = document.getElementById("mailingListModal");
+  const closeBtn = document.getElementById("closeModal");
+  const form = document.querySelector(".newsletter-form");
+
+  // Check if user has already seen the popup
+  const hasSeenPopup = localStorage.getItem("hasSeenMailingListPopup");
+
+  // Show popup after 10 seconds if user hasn't seen it
+  if (!hasSeenPopup) {
+    setTimeout(() => {
+      showModal();
+    }, 10000); // 10 seconds delay
+  }
+
+  // Close modal when clicking X
+  closeBtn.addEventListener("click", closeModal);
+
+  // Close modal when clicking outside
+  modal.addEventListener("click", function (e) {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("show")) {
+      closeModal();
+    }
+  });
+
+  // Handle form submission
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get form data
+    const email = document.getElementById("newsletter-email").value;
+    const name = document.getElementById("newsletter-name").value;
+
+    // Basic email validation
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+    // Here you would normally send the data to your mailing list service
+    // For now, we'll just show a success message
+    showSuccessMessage();
+
+    // Mark as seen and close
+    localStorage.setItem("hasSeenMailingListPopup", "true");
+    closeModal();
+  });
+
+  function showModal() {
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+  }
+
+  function closeModal() {
+    modal.classList.remove("show");
+    document.body.style.overflow = ""; // Restore scrolling
+    localStorage.setItem("hasSeenMailingListPopup", "true");
+  }
+
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+
+  function showSuccessMessage() {
+    const modalBody = document.querySelector(".modal-body");
+    modalBody.innerHTML = `
+      <h3>Thanks for joining!</h3>
+      <p>🎵 You're now part of The Hangover Sessions community!</p>
+      <p>We'll keep you updated on upcoming sessions and new artists.</p>
+      <button class="newsletter-submit" onclick="document.getElementById('closeModal').click()">
+        Continue Browsing
+      </button>
+    `;
+  }
+}
