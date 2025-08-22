@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Hangover Sessions</title>
+    <link rel="icon" type="image/png" href="assets/logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
 
@@ -14,7 +15,8 @@
         <a href="#home" class="logo">The Hangover Sessions</a>
         <ul class="nav-menu" id="navMenu">
           <li><a href="#home">Home</a></li>
-          <li><a href="#upcoming">Upcoming Artists</a></li>
+          <li><a href="#upcoming">Upcoming Sessions</a></li>
+          <li><a href="#archive">Archive</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <button
@@ -83,10 +85,25 @@
       <section id="upcoming" class="upcoming-artists">
         <div class="container">
           <div class="section-header">
-            <h2>Upcoming Artists</h2>
+            <h2>Upcoming Sessions</h2>
           </div>
           <div id="artistsGrid" class="artists-grid">
             <!-- Artists will be inserted here by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Archive Section -->
+      <section id="archive" class="archive">
+        <div class="container">
+          <div class="section-header">
+            <h2>Session Archive</h2>
+            <p>
+              Relive past performances and discover the stories behind the music
+            </p>
+          </div>
+          <div id="archiveGrid" class="archive-grid">
+            <!-- Archive episodes will be inserted here by JavaScript -->
           </div>
         </div>
       </section>
@@ -99,17 +116,10 @@
             <p>Want to perform at The Hangover Sessions? Get in touch!</p>
           </div>
           <!-- 
-                IMPORTANT: Replace the action URL with your form service endpoint
-                Options:
-                - Formspree: action="https://formspree.io/f/YOUR_FORM_ID"
-                - Netlify Forms: add data-netlify="true" attribute to form
-                - Other services: update action URL accordingly
+                Mailjet Integration - Replace YOUR_* values in mailjet-config.js
+                with your actual Mailjet credentials and settings
             -->
-          <form
-            class="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
-          >
+          <form class="contact-form">
             <div class="form-group">
               <label for="name">Your Name *</label>
               <input type="text" id="name" name="name" required />
@@ -230,18 +240,10 @@
           </p>
 
           <!-- 
-            IMPORTANT: Replace with your mailing list service endpoint
-            Options:
-            - Mailchimp: Use their embedded form code
-            - ConvertKit: Use their form embed
-            - Substack: Use their subscription form
-            - Other services: Update action URL accordingly
+            Mailjet Integration - Newsletter signup handled by JavaScript
+            Configure your Mailjet settings in mailjet-config.js
           -->
-          <form
-            class="newsletter-form"
-            action="https://your-mailing-service.com/subscribe"
-            method="POST"
-          >
+          <form class="newsletter-form">
             <div class="form-group">
               <input
                 type="email"
@@ -271,6 +273,7 @@
       </div>
     </div>
 
+    <script src="mailjet-config.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>
