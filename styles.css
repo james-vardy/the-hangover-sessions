@@ -91,7 +91,7 @@ nav {
 
 /* Hero Section */
 .hero {
-  padding: 4rem 0;
+  padding: 2rem 0;
   text-align: center;
   background: linear-gradient(
     135deg,
@@ -104,6 +104,20 @@ nav {
   font-size: 3rem;
   margin-bottom: 1rem;
   font-weight: 900;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.main-logo {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
 }
 
 .hero-subtitle {
@@ -604,6 +618,18 @@ footer {
 
   .hero h1 {
     font-size: 2rem;
+  }
+
+  .hero-title {
+    gap: 1rem;
+  }
+
+  .title-logo {
+    height: 40px;
+  }
+
+  .main-logo {
+    height: 60px;
   }
 
   .hero-subtitle {
