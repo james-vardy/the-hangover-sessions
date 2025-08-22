@@ -152,10 +152,32 @@ async function loadArchiveEpisodes() {
       const archiveCard = document.createElement("div");
       archiveCard.className = "archive-card";
 
-      // Create songs list
+      // Create songs list only if there are songs
       const songsList = episode.songs
         .map((song) => `<li>${song}</li>`)
         .join("");
+
+      // Check if we should show songs section
+      const songsSection =
+        episode.songs && episode.songs.length > 0
+          ? `
+          <div class="archive-section">
+            <h4>Songs Performed:</h4>
+            <ul class="songs-list">
+              ${songsList}
+            </ul>
+          </div>`
+          : "";
+
+      // Check if we should show session notes section
+      const sessionNotesSection =
+        episode.sessionNotes && episode.sessionNotes.trim() !== ""
+          ? `
+          <div class="archive-section">
+            <h4>Session Notes:</h4>
+            <p class="archive-sessionNotes">${episode.sessionNotes}</p>
+          </div>`
+          : "";
 
       // Extract YouTube video ID from URL and use YouTube thumbnail
       function getYouTubeThumbnail(videoUrl) {
@@ -170,7 +192,7 @@ async function loadArchiveEpisodes() {
         }
 
         // Fallback to logo if no valid YouTube URL
-        return "./assets/logo.png";
+        return "./assets/logo-min.png";
       }
 
       const thumbnailSrc =
@@ -189,7 +211,7 @@ async function loadArchiveEpisodes() {
         episode.videoUrl.match(
           /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
         )?.[1]
-      }/hqdefault.jpg'; if(this.onerror) { this.onerror=null; this.src='./assets/logo.png'; }">
+      }/hqdefault.jpg'; if(this.onerror) { this.onerror=null; this.src='./assets/logo-min.png'; }">
             <div class="play-overlay">▶</div>
           </a>
         </div>
@@ -197,17 +219,9 @@ async function loadArchiveEpisodes() {
           <div class="archive-date">${episode.displayDate}</div>
           <h3 class="archive-name">${episode.artist}</h3>
           
-          <div class="archive-section">
-            <h4>Songs Performed:</h4>
-            <ul class="songs-list">
-              ${songsList}
-            </ul>
-          </div>
+          ${songsSection}
           
-          <div class="archive-section">
-            <h4>Session Notes:</h4>
-            <p class="archive-sessionNotes">${episode.sessionNotes}</p>
-          </div>
+          ${sessionNotesSection}
           
           <div class="archive-actions">
             <a href="${
