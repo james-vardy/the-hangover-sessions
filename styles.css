@@ -251,11 +251,12 @@ p a:hover,
   color: var(--secondary-color);
   line-height: 1.7;
   flex-grow: 1;
+  margin-bottom: 1rem;
 }
 
 .artist-social {
   margin-top: auto;
-  padding-top: 1rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--border-color);
   flex-shrink: 0;
 }
