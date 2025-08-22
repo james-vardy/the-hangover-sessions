@@ -289,7 +289,7 @@ p a:hover,
 }
 
 /* Archive Section */
-.archive-section {
+.archive {
   padding: 4rem 0;
   background: var(--bg-color);
 }
@@ -374,6 +374,75 @@ p a:hover,
   margin-bottom: 0.75rem;
   font-weight: 700;
   color: var(--primary-color);
+}
+
+.archive-section {
+  margin-bottom: 1.5rem;
+}
+
+.archive-section h4 {
+  color: var(--text-color);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.songs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.songs-list li {
+  padding: 0.25rem 0;
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.songs-list li:before {
+  content: "♪";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.archive-interview {
+  color: var(--secondary-color);
+  line-height: 1.6;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.archive-actions {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.watch-button {
+  background: var(--hpbc-green);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  display: inline-block;
+}
+
+.watch-button:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.archive-error {
+  text-align: center;
+  color: var(--secondary-color);
+  font-style: italic;
+  padding: 2rem;
 }
 
 .archive-bio {

@@ -133,8 +133,69 @@ function loadLatestVideo() {
 document.addEventListener("DOMContentLoaded", function () {
   loadUpcomingArtists();
   loadLatestVideo();
+  loadArchiveEpisodes();
   initializeMailingListPopup();
 });
+
+// Load archive episodes from external JSON file
+async function loadArchiveEpisodes() {
+  const archiveGrid = document.getElementById("archiveGrid");
+
+  try {
+    const response = await fetch("./archive.json");
+    const episodes = await response.json();
+
+    // Sort by date descending (newest first)
+    episodes.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    episodes.forEach((episode) => {
+      const archiveCard = document.createElement("div");
+      archiveCard.className = "archive-card";
+
+      // Create songs list
+      const songsList = episode.songs
+        .map((song) => `<li>${song}</li>`)
+        .join("");
+
+      archiveCard.innerHTML = `
+        <div class="archive-image-container">
+          <a href="${episode.videoUrl}" target="_blank" rel="noopener noreferrer" class="video-link">
+            <img src="${episode.thumbnail}" alt="${episode.artist}" class="archive-image">
+            <div class="play-overlay">▶</div>
+          </a>
+        </div>
+        <div class="archive-content">
+          <div class="archive-date">${episode.displayDate}</div>
+          <h3 class="archive-name">${episode.artist}</h3>
+          
+          <div class="archive-section">
+            <h4>Songs Performed:</h4>
+            <ul class="songs-list">
+              ${songsList}
+            </ul>
+          </div>
+          
+          <div class="archive-section">
+            <h4>Interview Highlights:</h4>
+            <p class="archive-interview">${episode.interview}</p>
+          </div>
+          
+          <div class="archive-actions">
+            <a href="${episode.videoUrl}" target="_blank" rel="noopener noreferrer" class="watch-button">
+              Watch Full Session
+            </a>
+          </div>
+        </div>
+      `;
+      archiveGrid.appendChild(archiveCard);
+    });
+  } catch (error) {
+    console.error("Error loading archive episodes:", error);
+    // Show error message
+    archiveGrid.innerHTML =
+      '<p class="archive-error">Unable to load archive episodes. Please try again later.</p>';
+  }
+}
 
 // Mailing List Popup Functionality
 function initializeMailingListPopup() {
