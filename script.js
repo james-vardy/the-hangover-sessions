@@ -205,8 +205,8 @@ async function loadArchiveEpisodes() {
           </div>
           
           <div class="archive-section">
-            <h4>Interview Highlights:</h4>
-            <p class="archive-interview">${episode.interview}</p>
+            <h4>Session Notes:</h4>
+            <p class="archive-sessionNotes">${episode.sessionNotes}</p>
           </div>
           
           <div class="archive-actions">
@@ -276,13 +276,30 @@ function initializeMailingListPopup() {
     }
 
     // Here you would normally send the data to your mailing list service
-    // For now, we'll just show a success message
-    showSuccessMessage();
-
-    // Mark as seen and close
-    localStorage.setItem("hasSeenMailingListPopup", "true");
-    closeModal();
+    // Using Mailjet for newsletter signup
+    handleNewsletterSubmission(email, name);
   });
+
+  async function handleNewsletterSubmission(email, name) {
+    if (window.MailjetHandler) {
+      const result = await window.MailjetHandler.handleNewsletterSignup(
+        email,
+        name
+      );
+      if (result.success) {
+        showSuccessMessage();
+        localStorage.setItem("hasSeenMailingListPopup", "true");
+        closeModal();
+      } else {
+        alert(result.message);
+      }
+    } else {
+      // Fallback if Mailjet isn't configured
+      showSuccessMessage();
+      localStorage.setItem("hasSeenMailingListPopup", "true");
+      closeModal();
+    }
+  }
 
   function showModal() {
     modal.classList.add("show");
@@ -312,3 +329,55 @@ function initializeMailingListPopup() {
     `;
   }
 }
+
+// Contact Form Handler
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.querySelector(".contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // Get form data
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        demo: document.getElementById("demo").value,
+        message: document.getElementById("message").value,
+      };
+
+      // Show loading state
+      const submitBtn = contactForm.querySelector(".submit-btn");
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = "Sending...";
+      submitBtn.disabled = true;
+
+      // Handle submission
+      if (window.MailjetHandler) {
+        const result = await window.MailjetHandler.handleContactForm(formData);
+
+        if (result.success) {
+          // Show success message
+          contactForm.innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+              <h3 style="color: var(--hpbc-green); margin-bottom: 1rem;">✓ Demo Submitted!</h3>
+              <p>Thanks ${formData.name}! We've received your demo and will get back to you soon.</p>
+              <p style="margin-top: 1rem;"><a href="#" onclick="location.reload()">Submit Another Demo</a></p>
+            </div>
+          `;
+        } else {
+          alert(result.message);
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+        }
+      } else {
+        // Fallback - you can replace this with a simple mailto or other service
+        alert(
+          "Mailjet not configured. Please set up your Mailjet credentials."
+        );
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }
+    });
+  }
+});

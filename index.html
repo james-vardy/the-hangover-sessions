@@ -116,17 +116,10 @@
             <p>Want to perform at The Hangover Sessions? Get in touch!</p>
           </div>
           <!-- 
-                IMPORTANT: Replace the action URL with your form service endpoint
-                Options:
-                - Formspree: action="https://formspree.io/f/YOUR_FORM_ID"
-                - Netlify Forms: add data-netlify="true" attribute to form
-                - Other services: update action URL accordingly
+                Mailjet Integration - Replace YOUR_* values in mailjet-config.js
+                with your actual Mailjet credentials and settings
             -->
-          <form
-            class="contact-form"
-            action="https://formspree.io/f/YOUR_FORM_ID"
-            method="POST"
-          >
+          <form class="contact-form">
             <div class="form-group">
               <label for="name">Your Name *</label>
               <input type="text" id="name" name="name" required />
@@ -247,18 +240,10 @@
           </p>
 
           <!-- 
-            IMPORTANT: Replace with your mailing list service endpoint
-            Options:
-            - Mailchimp: Use their embedded form code
-            - ConvertKit: Use their form embed
-            - Substack: Use their subscription form
-            - Other services: Update action URL accordingly
+            Mailjet Integration - Newsletter signup handled by JavaScript
+            Configure your Mailjet settings in mailjet-config.js
           -->
-          <form
-            class="newsletter-form"
-            action="https://your-mailing-service.com/subscribe"
-            method="POST"
-          >
+          <form class="newsletter-form">
             <div class="form-group">
               <input
                 type="email"
@@ -288,6 +273,7 @@
       </div>
     </div>
 
+    <script src="mailjet-config.js" defer></script>
     <script src="script.js" defer></script>
   </body>
 </html>

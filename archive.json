@@ -4,129 +4,133 @@
     "artist": "April Tapes",
     "date": "2025-01-12",
     "displayDate": "January 12, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=zSjw__q0klM&ab_channel=TheHangoverSessions",
+    "videoUrl": "https://www.youtube.com/watch?v=zSjw__q0klM&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
     "thumbnail": "",
     "songs": ["Wasted", "Weeds"],
-    "interview": "April Tapes beautifully stripped back away from their usual garage/grunge rock sound showcasing two unreleased tracks. I love hearing them in an acoustic setting, as the focus on Bethan and Max's gorgeous vocal harmonies."
+    "sessionNotes": "April Tapes beautifully stripped back away from their usual garage/grunge rock sound showcasing two unreleased tracks. I love hearing them in an acoustic setting, as the focus on Bethan and Max's gorgeous vocal harmonies."
   },
   {
     "id": 2,
     "artist": "Eszter Vida",
     "date": "2025-01-19",
     "displayDate": "January 19, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=XbKLtm4oFkA&ab_channel=TheHangoverSessions",
+    "videoUrl": "https://www.youtube.com/watch?v=XbKLtm4oFkA&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
     "thumbnail": "",
     "songs": ["(Is This My) Last Night with You?", "Paper Rounds"],
-    "interview": "Eszter's band picked out some books from the Hyde Park Book Club's collection to represent their character. Eszter loved Gods, Gangsters, and Honour, while Joseph Barron picked Masters of Sex."
+    "sessionNotes": "Eszter's band picked out some books from the Hyde Park Book Club's collection to represent their character. Eszter loved Gods, Gangsters, and Honour, while Joseph Barron picked Masters of Sex."
   },
   {
     "id": 3,
     "artist": "The Tallulahs",
     "date": "2025-01-26",
     "displayDate": "January 26, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=80xm8Uu4InY&ab_channel=TheHangoverSessions",
+    "videoUrl": "https://www.youtube.com/watch?v=80xm8Uu4InY&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
     "thumbnail": "",
     "songs": ["I wrote this song", "The Falling Down"],
-    "interview": "The Tallulahs brought their distinctive Matlock Bath sound to Leeds, sharing insights into their writing process and family band dynamics."
+    "sessionNotes": "The Tallulahs brought their distinctive Matlock Bath sound to Leeds, sharing insights into their writing process and family band dynamics."
   },
   {
     "id": 4,
     "artist": "Cal + Jamie (Substandards)",
-    "date": "2024-11-01",
-    "displayDate": "November 1, 2024",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Cal+Jamie",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "The duo Cal + Jamie (Substandards) performed collaborative pieces and talked about their partnership and musical chemistry."
+    "date": "2025-02-02",
+    "displayDate": "February 2, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=WLZDpxi5BCY&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": [
+      "Hangover Sessions Theme",
+      "I went to the market...",
+      "The night's almost over"
+    ],
+    "sessionNotes": ""
   },
   {
     "id": 5,
     "artist": "Bank Details",
-    "date": "2024-12-01",
-    "displayDate": "December 1, 2024",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Bank+Details",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Bank Details brought their signature style to this winter session, discussing their latest projects and musical evolution."
+    "date": "2024-02-16",
+    "displayDate": "February 16, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=FdBz8uYqnyA&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["Speak when spoken to", "Machine Grows"],
+    "sessionNotes": ""
   },
   {
     "id": 6,
     "artist": "Rhiannon Hope",
-    "date": "2025-01-01",
-    "displayDate": "January 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Rhiannon+Hope",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Rhiannon Hope delivered a captivating New Year's session, sharing her musical journey and future aspirations."
+    "date": "2025-02-23",
+    "displayDate": "February 23, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=ATbwbJSZr2Q&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["All Things, Rising and Returning", "Indulge"],
+    "sessionNotes": ""
   },
   {
     "id": 7,
     "artist": "Normal Village",
-    "date": "2025-02-01",
-    "displayDate": "February 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Normal+Village",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Normal Village brought their unique perspective to the session, discussing their band dynamics and creative process."
+    "date": "2025-03-09",
+    "displayDate": "March 9, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=V0cF_FHFlwg&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["Bunny", "Remain in Plight"],
+    "sessionNotes": ""
   },
   {
     "id": 8,
     "artist": "Rushbonds",
-    "date": "2025-03-01",
-    "displayDate": "March 1, 2025",
+    "date": "2025-03-23",
+    "displayDate": "March 23, 2025",
     "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Rushbonds",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Rushbonds delivered an emotional performance and opened up about their musical influences and journey."
+    "thumbnail": "",
+    "songs": [],
+    "sessionNotes": ""
   },
   {
     "id": 9,
     "artist": "Ponzo",
-    "date": "2025-04-01",
-    "displayDate": "April 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Ponzo",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Ponzo brought energy and passion to this session, sharing stories behind their music and upcoming projects."
+    "date": "2025-04-06",
+    "displayDate": "April 6, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=-MjbBrRD8xM&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["City", "Don't Stare"],
+    "sessionNotes": ""
   },
   {
     "id": 10,
     "artist": "elwell",
-    "date": "2025-05-01",
-    "displayDate": "May 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=elwell",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "elwell showcased their distinctive sound and discussed their creative process in this intimate morning session."
+    "date": "2025-04-27",
+    "displayDate": "April 27, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=NPz6G-i0HGY&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["Let me out, let me back", "Go Faster"],
+    "sessionNotes": ""
   },
   {
     "id": 11,
     "artist": "Joe Barron",
-    "date": "2025-06-01",
-    "displayDate": "June 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Joe+Barron",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Joe delivered powerful performances and talked about his experiences in the music industry during this engaging session."
+    "date": "2025-05-04",
+    "displayDate": "May 4, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=rOTFPVGoPI0&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": ["Living in the shade", "Untitled"],
+    "sessionNotes": ""
   },
   {
     "id": 12,
-    "artist": "Francesca Gullan",
-    "date": "2025-07-01",
-    "displayDate": "July 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Francesca+Gullan",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Francesca shared her songwriting process and performed beautiful acoustic arrangements in this memorable session."
+    "artist": "Francesca Cullen",
+    "date": "2025-05-11",
+    "displayDate": "May 11, 2025",
+    "videoUrl": "https://www.youtube.com/watch?v=koBg6lc4aBU&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": [],
+    "sessionNotes": ""
   },
   {
     "id": 13,
     "artist": "Sam King",
     "date": "2025-08-01",
     "displayDate": "August 1, 2025",
-    "videoUrl": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID",
-    "thumbnail": "https://via.placeholder.com/400x300/f0f0f0/666666?text=Sam+King",
-    "songs": ["Song Title 1", "Song Title 2", "Song Title 3"],
-    "interview": "Sam King brought his unique style to The Hangover Sessions, discussing his musical journey and influences in this intimate performance."
+    "videoUrl": "https://www.youtube.com/watch?v=mJj9IDYqBVA&list=PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+    "thumbnail": "",
+    "songs": [],
+    "sessionNotes": ""
   }
 ]

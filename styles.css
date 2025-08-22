@@ -424,7 +424,7 @@ p a:hover,
   color: var(--accent-color);
 }
 
-.archive-interview {
+.archive-sessionNotes {
   color: var(--secondary-color);
   line-height: 1.6;
   font-size: 0.9rem;
