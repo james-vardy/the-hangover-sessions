@@ -6,6 +6,9 @@ node_modules/
 .env.local
 .env.production
 
+# Wrangler cache and secrets
+.wrangler/
+
 # Build outputs
 dist/
 build/
