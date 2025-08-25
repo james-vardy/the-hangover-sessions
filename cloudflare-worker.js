@@ -10,7 +10,7 @@ const ALLOWED_ORIGINS = [
   "http://localhost:5000",
   "http://127.0.0.1:3000",
   "http://127.0.0.1:8080",
-  "http://0.0.0.0:8080",
+  "http://0.0.0.0:3000",
   // Add file:// for local development
   null,
 ];
@@ -58,46 +58,6 @@ function corsResponse(data, status = 200, request) {
 function validateEmail(email) {
   return email && EMAIL_REGEX.test(email);
 }
-
-export default {
-  async fetch(request, env, ctx) {
-    // Handle CORS preflight requests
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        status: 200,
-        headers: getCorsHeaders(request),
-      });
-    }
-
-    const url = new URL(request.url);
-    const { pathname, method } = url;
-
-    // Route handling with early returns
-    if (method === "POST") {
-      if (pathname === "/api/contact") {
-        return handleContact(request, env);
-      }
-      if (pathname === "/api/newsletter") {
-        return handleNewsletter(request, env);
-      }
-    }
-
-    // Health check endpoint
-    if (method === "GET" && pathname === "/health") {
-      return corsResponse(
-        { status: "ok", timestamp: new Date().toISOString() },
-        200,
-        request
-      );
-    }
-
-    return corsResponse(
-      { error: "Not Found", path: pathname, method: method },
-      404,
-      request
-    );
-  },
-};
 
 // Handle contact form submissions
 async function handleContact(request, env) {
@@ -367,3 +327,44 @@ async function handleNewsletter(request, env) {
     );
   }
 }
+
+export default {
+  async fetch(request, env, ctx) {
+    // Handle CORS preflight requests
+    if (request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 200,
+        headers: getCorsHeaders(request),
+      });
+    }
+
+    const url = new URL(request.url);
+    const pathname = url.pathname;
+    const method = request.method;
+
+    // Route handling with early returns
+    if (method === "POST") {
+      if (pathname === "/api/contact") {
+        return handleContact(request, env);
+      }
+      if (pathname === "/api/newsletter") {
+        return handleNewsletter(request, env);
+      }
+    }
+
+    // Health check endpoint
+    if (method === "GET" && pathname === "/health") {
+      return corsResponse(
+        { status: "ok", timestamp: new Date().toISOString() },
+        200,
+        request
+      );
+    }
+
+    return corsResponse(
+      { error: "Not Found", path: pathname, method: method },
+      404,
+      request
+    );
+  },
+};
