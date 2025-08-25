@@ -2,6 +2,65 @@
 const config = {
   // YouTube playlist ID for all episodes (latest to oldest)
   youtubePlaylistId: "PLCx0x8eol06rECBpKMYshqzME6agyYR3x",
+  // Worker endpoint for form submissions
+  workerUrl: "https://hangover-sessions-api.james-vardy.workers.dev",
+};
+
+// Mailjet Handler - Integrated worker-only implementation
+const MailjetHandler = {
+  // Helper function for consistent error responses
+  createErrorResponse: (
+    message = "Something went wrong. Please try again."
+  ) => ({
+    success: false,
+    message,
+  }),
+
+  // Shared worker request function
+  makeWorkerRequest: async function (endpoint, data) {
+    try {
+      const response = await fetch(`${config.workerUrl}${endpoint}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Worker error: ${response.status} ${response.statusText}`
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error(`Worker request failed for ${endpoint}:`, error);
+      throw new Error(
+        "Service temporarily unavailable. Please try again later."
+      );
+    }
+  },
+
+  // Contact Form Handler - Worker only
+  handleContactForm: async function (formData) {
+    try {
+      return await this.makeWorkerRequest("/api/contact", formData);
+    } catch (error) {
+      return this.createErrorResponse(
+        "Failed to submit demo. Please try again later."
+      );
+    }
+  },
+
+  // Newsletter Subscription Handler - Worker only
+  handleNewsletterSignup: async function (email, name = "") {
+    try {
+      return await this.makeWorkerRequest("/api/newsletter", { email, name });
+    } catch (error) {
+      return this.createErrorResponse(
+        "Failed to subscribe. Please try again later."
+      );
+    }
+  },
 };
 
 // Mobile menu toggle
@@ -295,23 +354,13 @@ function initializeMailingListPopup() {
   });
 
   async function handleNewsletterSubmission(email, name) {
-    if (window.MailjetHandler) {
-      const result = await window.MailjetHandler.handleNewsletterSignup(
-        email,
-        name
-      );
-      if (result.success) {
-        showSuccessMessage();
-        localStorage.setItem("hasSeenMailingListPopup", "true");
-        closeModal();
-      } else {
-        alert(result.message);
-      }
-    } else {
-      // Fallback if Mailjet isn't configured
+    const result = await MailjetHandler.handleNewsletterSignup(email, name);
+    if (result.success) {
       showSuccessMessage();
       localStorage.setItem("hasSeenMailingListPopup", "true");
       closeModal();
+    } else {
+      alert(result.message);
     }
   }
 
@@ -367,28 +416,19 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = true;
 
       // Handle submission
-      if (window.MailjetHandler) {
-        const result = await window.MailjetHandler.handleContactForm(formData);
+      const result = await MailjetHandler.handleContactForm(formData);
 
-        if (result.success) {
-          // Show success message
-          contactForm.innerHTML = `
-            <div style="text-align: center; padding: 2rem;">
-              <h3 style="color: var(--hpbc-green); margin-bottom: 1rem;">✓ Demo Submitted!</h3>
-              <p>Thanks ${formData.name}! We've received your demo and will get back to you soon.</p>
-              <p style="margin-top: 1rem;"><a href="#" onclick="location.reload()">Submit Another Demo</a></p>
-            </div>
-          `;
-        } else {
-          alert(result.message);
-          submitBtn.textContent = originalText;
-          submitBtn.disabled = false;
-        }
+      if (result.success) {
+        // Show success message
+        contactForm.innerHTML = `
+          <div style="text-align: center; padding: 2rem;">
+            <h3 style="color: var(--hpbc-green); margin-bottom: 1rem;">✓ Demo Submitted!</h3>
+            <p>Thanks ${formData.name}! We've received your demo and will get back to you soon.</p>
+            <p style="margin-top: 1rem;"><a href="#" onclick="location.reload()">Submit Another Demo</a></p>
+          </div>
+        `;
       } else {
-        // Fallback - you can replace this with a simple mailto or other service
-        alert(
-          "Mailjet not configured. Please set up your Mailjet credentials."
-        );
+        alert(result.message);
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
       }

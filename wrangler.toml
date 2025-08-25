@@ -1,0 +1,14 @@
+name = "hangover-sessions-api"
+main = "cloudflare-worker.js"
+compatibility_date = "2025-08-24"
+
+# Optional: KV namespace for rate limiting
+# [[kv_namespaces]]
+# binding = "KV"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# Routes - replace with your actual domain
+# [[route]]
+# pattern = "thehangoversessions.co.uk/api/*"
+# zone_name = "thehangoversessions.co.uk"

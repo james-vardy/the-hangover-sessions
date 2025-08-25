@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Form Integration</title>
+  </head>
+  <body>
+    <h1>Test Mailjet Integration</h1>
+
+    <h2>Contact Form Test</h2>
+    <form id="testContactForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="url" id="demo" placeholder="Demo URL" required />
+      <textarea id="message" placeholder="Message"></textarea>
+      <button type="submit">Submit Contact</button>
+    </form>
+
+    <h2>Newsletter Test</h2>
+    <form id="testNewsletterForm">
+      <input type="email" id="newsletter-email" placeholder="Email" required />
+      <input type="text" id="newsletter-name" placeholder="Name (optional)" />
+      <button type="submit">Subscribe</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+      // Configuration
+      const config = {
+        workerUrl: "https://hangover-sessions-api.james-vardy.workers.dev",
+      };
+
+      // Mailjet Handler - Same as in script.js
+      const MailjetHandler = {
+        createErrorResponse: (
+          message = "Something went wrong. Please try again."
+        ) => ({
+          success: false,
+          message,
+        }),
+
+        makeWorkerRequest: async function (endpoint, data) {
+          try {
+            const response = await fetch(`${config.workerUrl}${endpoint}`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+              throw new Error(
+                `Worker error: ${response.status} ${response.statusText}`
+              );
+            }
+
+            return await response.json();
+          } catch (error) {
+            console.error(`Worker request failed for ${endpoint}:`, error);
+            throw new Error(
+              "Service temporarily unavailable. Please try again later."
+            );
+          }
+        },
+
+        handleContactForm: async function (formData) {
+          try {
+            return await this.makeWorkerRequest("/api/contact", formData);
+          } catch (error) {
+            return this.createErrorResponse(
+              "Failed to submit demo. Please try again later."
+            );
+          }
+        },
+
+        handleNewsletterSignup: async function (email, name = "") {
+          try {
+            return await this.makeWorkerRequest("/api/newsletter", {
+              email,
+              name,
+            });
+          } catch (error) {
+            return this.createErrorResponse(
+              "Failed to subscribe. Please try again later."
+            );
+          }
+        },
+      };
+
+      // Test contact form
+      document
+        .getElementById("testContactForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            demo: document.getElementById("demo").value,
+            message: document.getElementById("message").value,
+          };
+
+          console.log("Submitting contact form:", formData);
+          const result = await MailjetHandler.handleContactForm(formData);
+
+          document.getElementById("results").innerHTML = `
+                <h3>Contact Form Result:</h3>
+                <p>Success: ${result.success}</p>
+                <p>Message: ${result.message}</p>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            `;
+        });
+
+      // Test newsletter form
+      document
+        .getElementById("testNewsletterForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("newsletter-email").value;
+          const name = document.getElementById("newsletter-name").value;
+
+          console.log("Submitting newsletter signup:", { email, name });
+          const result = await MailjetHandler.handleNewsletterSignup(
+            email,
+            name
+          );
+
+          document.getElementById("results").innerHTML = `
+                <h3>Newsletter Signup Result:</h3>
+                <p>Success: ${result.success}</p>
+                <p>Message: ${result.message}</p>
+                <pre>${JSON.stringify(result, null, 2)}</pre>
+            `;
+        });
+    </script>
+  </body>
+</html>
