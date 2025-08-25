@@ -3,7 +3,7 @@ export async function loadArchiveEpisodes() {
   const archiveGrid = document.getElementById("archiveGrid");
 
   try {
-    const response = await fetch("/src/data/archive.json");
+    const response = await fetch("data/archive.json");
     const episodes = await response.json();
 
     // Sort by date descending (newest first)

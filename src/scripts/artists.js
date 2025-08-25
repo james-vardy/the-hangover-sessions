@@ -5,7 +5,7 @@ export async function loadUpcomingArtists() {
   const artistsGrid = document.getElementById("artistsGrid");
 
   try {
-    const response = await fetch("/src/data/artists.json");
+    const response = await fetch("data/artists.json");
     const allArtists = await response.json();
 
     // Get current date for comparison
