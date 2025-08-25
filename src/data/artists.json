@@ -4,7 +4,7 @@
     "date": "2025-09-21",
     "displayDate": "September 21, 2025",
     "bio": "Leeds-based singer Romy Taylor mixes contemporary jazz instrumentals with heartfelt lyrics and vocals into epic ballads and groovy tunes. Taking inspiration from artists like Nai Palm, Lucy Rose, Björk and Minnie Riperton, make sure you catch her stripped sound for a special session.",
-    "image": "assets/artists/romy-taylor.webp",
+    "image": "/artists/romy-taylor.webp",
     "website": "https://linktr.ee/romytaylor",
     "spotify": "https://open.spotify.com/artist/7hwxe1biG7DJxyco5ecLKT",
     "instagram": "https://www.instagram.com/romytaylorr/"
@@ -14,7 +14,7 @@
     "date": "2025-09-27",
     "displayDate": "September 27, 2025",
     "bio": "Local legend Michael Cable of Vehicle fame, brings his witty musings to a special Saturday edition of The Hangover Sessions.",
-    "image": "assets/artists/michael-cable.jpeg",
+    "image": "/artists/michael-cable.jpeg",
     "website": "",
     "spotify": "",
     "instagram": "https://www.instagram.com/_mcable/"
@@ -24,7 +24,7 @@
     "date": "2025-09-28",
     "displayDate": "September 28, 2025",
     "bio": "Nottigham soft Rock outfit Drury Hill, named after a famous medieval Nottingham street, bring beautiful songwriting with male/female dual vocals.",
-    "image": "assets/artists/drury-hill.jpg",
+    "image": "/artists/drury-hill.jpg",
     "website": "",
     "spotify": "",
     "instagram": "https://www.instagram.com/druryhillhq/"

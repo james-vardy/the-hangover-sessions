@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Hangover Sessions</title>
-    <link rel="icon" type="image/png" href="assets/logo-min.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/logo-min.png" />
+    <!-- Vite will handle CSS injection -->
   </head>
 
   <body>
@@ -38,7 +38,7 @@
         <div class="container">
           <div class="hero-title">
             <img
-              src="assets/logo-min.png"
+              src="/logo-min.png"
               alt="The Hangover Sessions"
               class="main-logo"
             />
@@ -211,10 +211,7 @@
           </div>
           <div class="links-grid">
             <div class="link-card">
-              <img
-                src="assets/book-club-logo.png"
-                alt="Hyde Park Book Club Logo"
-              />
+              <img src="/book-club-logo.png" alt="Hyde Park Book Club Logo" />
               <a
                 href="https://www.hydeparkbookclub.co.uk"
                 target="_blank"
@@ -224,7 +221,7 @@
               <p>Our home venue in Leeds</p>
             </div>
             <div class="link-card">
-              <img src="assets/regcords-logo.png" alt="Private Records Logo" />
+              <img src="/regcords-logo.png" alt="Private Records Logo" />
               <a
                 href="https://www.privaterecords.com"
                 target="_blank"
@@ -234,10 +231,7 @@
               <p>Record label</p>
             </div>
             <div class="link-card">
-              <img
-                src="assets/dkscapture-logo.JPG"
-                alt="DKS Capture Headshot"
-              />
+              <img src="/dkscapture-logo.JPG" alt="DKS Capture Headshot" />
               <a
                 href="https://www.instagram.com/d.k.s.capture"
                 target="_blank"
@@ -248,7 +242,7 @@
             </div>
             <div class="link-card">
               <img
-                src="assets/evanjmartin-logo.JPG"
+                src="/evanjmartin-logo.JPG"
                 alt="Evan J. Martin Productions Headshot"
               />
               <a
@@ -335,6 +329,6 @@
       </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>

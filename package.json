@@ -1,0 +1,45 @@
+{
+  "name": "the-hangover-sessions",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "npm run dev",
+    "clean": "rm -rf dist",
+    "build:clean": "npm run clean && npm run build",
+    "lint:check": "echo 'Add ESLint later if needed'",
+    "format:check": "echo 'Add Prettier later if needed'"
+  },
+  "devDependencies": {
+    "vite": "^7.1.3",
+    "@tomjs/vite-plugin-html": "^1.5.2",
+    "terser": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "music",
+    "sessions",
+    "live",
+    "acoustic",
+    "leeds",
+    "hangover-sessions"
+  ],
+  "author": {
+    "name": "James Vardy",
+    "email": "james@lamplightdigital.co.uk",
+    "url": "https://lamplightdigital.co.uk"
+  },
+  "license": "ISC",
+  "description": "Free entry live sessions on Sunday mornings at Hyde Park Book Club, Leeds",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/james-vardy/the-hangover-sessions.git"
+  },
+  "homepage": "https://thehangoversessions.co.uk"
+}
