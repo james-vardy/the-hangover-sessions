@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Hangover Sessions</title>
-    <link rel="icon" type="image/png" href="assets/logo-min.png" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="/logo-min.png" />
+    <!-- Vite will handle CSS injection -->
   </head>
 
   <body>
@@ -16,6 +16,7 @@
         <ul class="nav-menu" id="navMenu">
           <li><a href="#home">Home</a></li>
           <li><a href="#upcoming">Upcoming Sessions</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
           <li><a href="#archive">Archive</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -37,14 +38,14 @@
         <div class="container">
           <div class="hero-title">
             <img
-              src="assets/logo-min.png"
+              src="/logo-min.png"
               alt="The Hangover Sessions"
               class="main-logo"
             />
           </div>
           <p class="hero-subtitle">
             Free entry live sessions on Sunday mornings at Hyde Park Book Club,
-            Leeds
+            Leeds.
           </p>
           <p class="hero-description">
             Join us for intimate filmed live performances every other Sunday
@@ -93,14 +94,52 @@
         </div>
       </section>
 
+      <!-- Newsletter Section -->
+      <section id="newsletter" class="newsletter-section">
+        <div class="container">
+          <div class="newsletter-content">
+            <div class="newsletter-text">
+              <h2>Sign up to our newsletter</h2>
+              <p>
+                Join our mailing list to get notified about upcoming Hangover
+                Sessions, new artists, and exclusive content.
+              </p>
+            </div>
+            <div class="newsletter-form-container">
+              <form class="standalone-newsletter-form">
+                <h3>Join the Community</h3>
+                <div class="form-group">
+                  <input
+                    type="email"
+                    id="standalone-newsletter-email"
+                    name="email"
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="standalone-newsletter-name"
+                    name="name"
+                    placeholder="Your name (optional)"
+                  />
+                </div>
+                <button type="submit" class="newsletter-signup-btn">
+                  Join the Sessions
+                </button>
+                <p class="newsletter-disclaimer">Unsubscribe anytime.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Archive Section -->
       <section id="archive" class="archive">
         <div class="container">
           <div class="section-header">
             <h2>Session Archive</h2>
-            <p>
-              Relive past performances and discover the stories behind the music
-            </p>
           </div>
           <div id="archiveGrid" class="archive-grid">
             <!-- Archive episodes will be inserted here by JavaScript -->
@@ -115,10 +154,7 @@
             <h2>Submit Your Demo</h2>
             <p>Want to perform at The Hangover Sessions? Get in touch!</p>
           </div>
-          <!-- 
-                Mailjet Integration - Replace YOUR_* values in mailjet-config.js
-                with your actual Mailjet credentials and settings
-            -->
+
           <form class="contact-form">
             <div class="form-group">
               <label for="name">Your Name *</label>
@@ -148,6 +184,19 @@
                 placeholder="Genre, influences, why you'd be great for The Hangover Sessions..."
               ></textarea>
             </div>
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input
+                  type="checkbox"
+                  id="newsletter-opt-in"
+                  name="newsletter-opt-in"
+                  checked
+                />
+                <span class="checkmark"></span>
+                Also add me to the mailing list for session updates and
+                exclusive content
+              </label>
+            </div>
             <button type="submit" class="submit-btn">Submit Demo</button>
           </form>
         </div>
@@ -162,12 +211,9 @@
           </div>
           <div class="links-grid">
             <div class="link-card">
-              <img
-                src="assets/book-club-logo.png"
-                alt="Hyde Park Book Club Logo"
-              />
+              <img src="/book-club-logo.png" alt="Hyde Park Book Club Logo" />
               <a
-                href="https://hydeparkbookclub.co.uk"
+                href="https://www.hydeparkbookclub.co.uk"
                 target="_blank"
                 rel="noopener noreferrer"
                 >Hyde Park Book Club</a
@@ -175,15 +221,19 @@
               <p>Our home venue in Leeds</p>
             </div>
             <div class="link-card">
-              <img src="assets/regcords-logo.png" alt="Private Records Logo" />
-              <a href="#" target="_blank" rel="noopener noreferrer"
-                >Private Records</a
+              <img src="/regcords-logo.png" alt="Private Records Logo" />
+              <a
+                href="https://www.privaterecords.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Private Regcords</a
               >
-              <p>Record label (Coming Soon)</p>
+              <p>Record label</p>
             </div>
             <div class="link-card">
+              <img src="/dkscapture-logo.JPG" alt="DKS Capture Headshot" />
               <a
-                href="https://www.instagram.com/dkscapture"
+                href="https://www.instagram.com/d.k.s.capture"
                 target="_blank"
                 rel="noopener noreferrer"
                 >DKS Capture</a
@@ -191,13 +241,17 @@
               <p>Video production</p>
             </div>
             <div class="link-card">
+              <img
+                src="/evanjmartin-logo.JPG"
+                alt="Evan J. Martin Productions Headshot"
+              />
               <a
-                href="https://www.evanjmartinproductions.co.uk"
+                href="https://www.evanjmartinproductions.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                >Evan J. Martin Productions</a
+                >Evan J. Martin</a
               >
-              <p>Audio production & engineering</p>
+              <p>Audio production</p>
             </div>
           </div>
         </div>
@@ -220,7 +274,15 @@
             >YouTube</a
           >
         </div>
-        <p>&copy; 2025 The Hangover Sessions. All rights reserved.</p>
+        <p>
+          &copy; 2025 The Hangover Sessions. All rights reserved. Site by
+          <a
+            href="https://lamplightdigital.co.uk"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Lamplight Digital</a
+          >.
+        </p>
       </div>
     </footer>
 
@@ -262,13 +324,11 @@
             </button>
           </form>
 
-          <p class="modal-footer-text">
-            No spam, just good vibes. Unsubscribe anytime.
-          </p>
+          <p class="modal-footer-text">Unsubscribe anytime.</p>
         </div>
       </div>
     </div>
 
-    <script src="script.js" defer></script>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
