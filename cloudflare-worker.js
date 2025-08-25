@@ -1,13 +1,37 @@
 // Cloudflare Worker for Mailjet Integration
 // Deploy this as a Cloudflare Worker to handle form submissions securely
 
-// CORS headers for your domain
-const CORS_HEADERS = {
-  "Access-Control-Allow-Origin": "https://www.thehangoversessions.co.uk",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
-  "Access-Control-Max-Age": "86400",
-};
+// Allowed origins for CORS
+const ALLOWED_ORIGINS = [
+  "https://www.thehangoversessions.co.uk",
+  "https://thehangoversessions.co.uk",
+  "http://localhost:3000",
+  "http://localhost:8080",
+  "http://localhost:5000",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:8080",
+  "http://0.0.0.0:8080",
+  // Add file:// for local development
+  null,
+];
+
+// Function to get CORS headers based on request origin
+function getCorsHeaders(request) {
+  const origin = request.headers.get("Origin");
+
+  // Check if origin is in allowed list or if it's a local file
+  const isAllowed =
+    ALLOWED_ORIGINS.includes(origin) ||
+    (origin && origin.startsWith("file://")) ||
+    !origin; // Allow requests with no origin (like curl)
+
+  return {
+    "Access-Control-Allow-Origin": isAllowed ? origin || "*" : "null",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Max-Age": "86400",
+  };
+}
 
 // Common email validation regex (compiled once)
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -20,12 +44,12 @@ const getMailjetHeaders = (env) => ({
 });
 
 // Helper function to add CORS headers to responses
-function corsResponse(data, status = 200) {
+function corsResponse(data, status = 200, request) {
   return new Response(JSON.stringify(data), {
     status,
     headers: {
       "Content-Type": "application/json",
-      ...CORS_HEADERS,
+      ...getCorsHeaders(request),
     },
   });
 }
@@ -41,7 +65,7 @@ export default {
     if (request.method === "OPTIONS") {
       return new Response(null, {
         status: 200,
-        headers: CORS_HEADERS,
+        headers: getCorsHeaders(request),
       });
     }
 
@@ -58,13 +82,39 @@ export default {
       }
     }
 
-    return new Response("Not Found", { status: 404 });
+    // Health check endpoint
+    if (method === "GET" && pathname === "/health") {
+      return corsResponse(
+        { status: "ok", timestamp: new Date().toISOString() },
+        200,
+        request
+      );
+    }
+
+    return corsResponse(
+      { error: "Not Found", path: pathname, method: method },
+      404,
+      request
+    );
   },
 };
 
 // Handle contact form submissions
 async function handleContact(request, env) {
   try {
+    // Check for required environment variables
+    if (!env.MAILJET_PUBLIC_KEY || !env.MAILJET_SECRET_KEY) {
+      return corsResponse(
+        {
+          success: false,
+          message: "Server configuration error. Please contact support.",
+          debug: "Missing Mailjet credentials",
+        },
+        500,
+        request
+      );
+    }
+
     const { name, email, demo, message } = await request.json();
 
     // Input validation
@@ -74,7 +124,8 @@ async function handleContact(request, env) {
           success: false,
           message: "Name, email, and demo link are required",
         },
-        400
+        400,
+        request
       );
     }
 
@@ -84,7 +135,8 @@ async function handleContact(request, env) {
           success: false,
           message: "Please enter a valid email address",
         },
-        400
+        400,
+        request
       );
     }
 
@@ -160,10 +212,14 @@ Timestamp: ${timestamp.toISOString()}
       throw new Error("Failed to send email");
     }
 
-    return corsResponse({
-      success: true,
-      message: "Demo submitted successfully! We'll get back to you soon.",
-    });
+    return corsResponse(
+      {
+        success: true,
+        message: "Demo submitted successfully! We'll get back to you soon.",
+      },
+      200,
+      request
+    );
   } catch (error) {
     console.error("Contact form error:", error);
     return corsResponse(
@@ -171,7 +227,8 @@ Timestamp: ${timestamp.toISOString()}
         success: false,
         message: "Failed to submit demo. Please try again later.",
       },
-      500
+      500,
+      request
     );
   }
 }
@@ -187,7 +244,8 @@ async function handleNewsletter(request, env) {
           success: false,
           message: "Email address is required",
         },
-        400
+        400,
+        request
       );
     }
 
@@ -197,7 +255,8 @@ async function handleNewsletter(request, env) {
           success: false,
           message: "Please enter a valid email address",
         },
-        400
+        400,
+        request
       );
     }
 
@@ -221,11 +280,15 @@ async function handleNewsletter(request, env) {
     );
 
     if (listResponse.ok) {
-      return corsResponse({
-        success: true,
-        message:
-          "Successfully subscribed! Welcome to The Hangover Sessions community.",
-      });
+      return corsResponse(
+        {
+          success: true,
+          message:
+            "Successfully subscribed! Welcome to The Hangover Sessions community.",
+        },
+        200,
+        request
+      );
     }
 
     // Fallback 1: Create contact first, then add to list
@@ -250,11 +313,15 @@ async function handleNewsletter(request, env) {
       );
 
       if (listResponse.ok) {
-        return corsResponse({
-          success: true,
-          message:
-            "Successfully subscribed! Welcome to The Hangover Sessions community.",
-        });
+        return corsResponse(
+          {
+            success: true,
+            message:
+              "Successfully subscribed! Welcome to The Hangover Sessions community.",
+          },
+          200,
+          request
+        );
       }
     } catch (contactError) {
       console.log("Contact creation failed:", contactError);
@@ -279,11 +346,15 @@ async function handleNewsletter(request, env) {
       throw new Error("Failed to subscribe to newsletter");
     }
 
-    return corsResponse({
-      success: true,
-      message:
-        "Successfully subscribed! Welcome to The Hangover Sessions community.",
-    });
+    return corsResponse(
+      {
+        success: true,
+        message:
+          "Successfully subscribed! Welcome to The Hangover Sessions community.",
+      },
+      200,
+      request
+    );
   } catch (error) {
     console.error("Newsletter subscription error:", error);
     return corsResponse(
@@ -291,7 +362,8 @@ async function handleNewsletter(request, env) {
         success: false,
         message: "Failed to subscribe. Please try again later.",
       },
-      500
+      500,
+      request
     );
   }
 }
