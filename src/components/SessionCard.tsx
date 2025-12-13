@@ -47,6 +47,7 @@ export default function SessionCard({
 }: SessionCardProps) {
   const isUpcoming = variant === "upcoming";
   const [showRSVPModal, setShowRSVPModal] = useState(false);
+  const [imageError, setImageError] = useState(false);
 
   // For archive sessions, use YouTube thumbnail if available
   const thumbnailUrl =
@@ -60,6 +61,10 @@ export default function SessionCard({
     }
   };
 
+  const handleImageError = () => {
+    setImageError(true);
+  };
+
   const content = (
     <div
       className={`group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 ${
@@ -70,10 +75,15 @@ export default function SessionCard({
       {/* Image */}
       <div className="relative aspect-video overflow-hidden bg-gray-100">
         <img
-          src={thumbnailUrl || session.image}
+          src={
+            imageError ? "/fallback-image.png" : thumbnailUrl || session.image
+          }
           alt={session.artist}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className={`w-full h-full ${
+            imageError ? "object-contain p-8" : "object-cover"
+          } group-hover:scale-105 transition-transform duration-500`}
           loading="lazy"
+          onError={handleImageError}
         />
         {session.youtubeUrl && !isUpcoming && (
           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
