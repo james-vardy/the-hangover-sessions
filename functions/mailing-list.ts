@@ -144,7 +144,7 @@ export async function onRequestPost(context: any) {
             <div class="content">
               <h2>Welcome to The Hangover Sessions!</h2>
               <p>Hi ${name},</p>
-              <p>Thanks for subscribing to our mailing list! 🎵</p>
+              <p>Thanks for subscribing to our mailing list!</p>
               <p>We'll keep you updated on:</p>
               <ul>
                 <li>Upcoming live sessions at Hyde Park Book Club</li>
@@ -160,8 +160,8 @@ export async function onRequestPost(context: any) {
               </ul>
             </div>
             <div class="footer">
-              <p>The Hangover Sessions<br>Sunday mornings at Hyde Park Book Club, Leeds</p>
-              <p><a href="https://thehangoversessions.co.uk">thehangoversessions.co.uk</a></p>
+              <p>Don't want to receive emails from us? <a href="[[UNSUB_LINK_LOCALE]]">Unsubscribe</a></p>
+              <p>The Hangover Sessions | Hyde Park Book Club, Leeds</p>
             </div>
           </div>
         </body>
