@@ -34,7 +34,7 @@ export default function RSVPModal({
     };
 
     try {
-      const response = await fetch("/api/rsvp", {
+      const response = await fetch("/rsvp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailData),

@@ -3,47 +3,43 @@ import { useState, FormEvent } from "react";
 export default function DemoSubmission() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(false);
+    setSubmitted(false);
 
-    const formData = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    const emailData = {
-      to: "demos@thehangoversessions.co.uk",
-      subject: `Demo Submission: ${formData.get("artist-name")}`,
-      text: `
-New Demo Submission
-
-Artist: ${formData.get("artist-name")}
-Email: ${formData.get("email")}
-Demo Link: ${formData.get("demo-link")}
-
-Message:
-${formData.get("message") || "No message provided"}
-      `.trim(),
+    const demoData = {
+      artistName: formData.get("artist-name") as string,
+      email: formData.get("email") as string,
+      demoLink: formData.get("demo-link") as string,
+      message: formData.get("message") as string,
     };
 
     try {
-      const response = await fetch("/api/send-email", {
+      const response = await fetch("/submit-demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
+        body: JSON.stringify(demoData),
       });
 
-      if (response.ok) {
-        setSubmitted(true);
-        e.currentTarget.reset();
-      } else {
-        alert(
-          "Failed to send demo. Please try again or email us directly at demos@thehangoversessions.co.uk"
-        );
+      if (!response.ok) {
+        throw new Error("Response not OK");
       }
+
+      await response.json();
+      setSubmitted(true);
+      form.reset();
+      setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
-      alert(
-        "Failed to send demo. Please try again or email us directly at demos@thehangoversessions.co.uk"
-      );
+      console.error("Fetch error:", error);
+      setError(true);
+      setTimeout(() => setError(false), 5000);
     } finally {
       setIsSubmitting(false);
     }
@@ -79,6 +75,20 @@ ${formData.get("message") || "No message provided"}
             <div className="mb-6 p-4 bg-brand-green/10 border border-brand-green rounded-lg text-center">
               <p className="text-brand-green font-medium">
                 Demo received! We'll listen and get back to you soon.
+              </p>
+            </div>
+          )}
+
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-500 rounded-lg text-center">
+              <p className="text-red-700 font-medium">
+                Failed to send demo. Please try again or email us directly at{" "}
+                <a
+                  href="mailto:thehangoversessions@gmail.com"
+                  className="underline hover:text-red-900"
+                >
+                  thehangoversessions@gmail.com
+                </a>
               </p>
             </div>
           )}
@@ -131,7 +141,7 @@ ${formData.get("message") || "No message provided"}
                 name="demo-link"
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:border-transparent outline-none transition"
-                placeholder="https://spotify.com/... or https://soundcloud.com/..."
+                placeholder="SoundCloud Link, Google Drive, Dropbox, etc."
               />
               <p className="text-sm text-gray-500 mt-2">
                 Spotify, SoundCloud, YouTube, Bandcamp, etc.
