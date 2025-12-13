@@ -1,5 +1,9 @@
 // Cloudflare Pages Function
-import Mailjet from "node-mailjet";
+const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
 
 interface RSVPData {
   name: string;
@@ -9,6 +13,12 @@ interface RSVPData {
     date: string;
     venue: string;
   };
+}
+
+export async function onRequestOptions() {
+  return new Response(null, {
+    headers: corsHeaders,
+  });
 }
 
 export async function onRequestPost(context: any) {
@@ -23,15 +33,10 @@ export async function onRequestPost(context: any) {
         JSON.stringify({ error: "Missing required fields" }),
         {
           status: 400,
-          headers: { "Content-Type": "application/json" },
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
         }
       );
     }
-
-    const mailjet = new Mailjet({
-      apiKey: env.MAILJET_API_KEY,
-      apiSecret: env.MAILJET_API_SECRET,
-    });
 
     // Email to organizers
     const organizerEmail = {
@@ -95,20 +100,35 @@ YouTube: @HangoverSessions
       `.trim(),
     };
 
-    // Send both emails
-    await mailjet.post("send", { version: "v3.1" }).request({
-      Messages: [organizerEmail, confirmationEmail],
+    // Send both emails via Mailjet REST API
+    const response = await fetch("https://api.mailjet.com/v3.1/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${btoa(
+          `${env.MAILJET_API_KEY}:${env.MAILJET_API_SECRET}`
+        )}`,
+      },
+      body: JSON.stringify({
+        Messages: [organizerEmail, confirmationEmail],
+      }),
     });
+
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error("Mailjet API error:", errorData);
+      throw new Error("Failed to send emails");
+    }
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   } catch (error: any) {
     console.error("Mailjet error:", error);
     return new Response(JSON.stringify({ error: "Failed to send email" }), {
       status: 500,
-      headers: { "Content-Type": "application/json" },
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
   }
 }
