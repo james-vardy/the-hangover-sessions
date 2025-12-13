@@ -4,64 +4,82 @@ export default function Footer() {
   return (
     <footer className="bg-brand-cream text-brand-dark py-12">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
+        <div className="flex flex-col items-center gap-8">
           {/* Logo / Brand */}
-          <div className="text-center lg:text-left">
+          <div className="text-center">
             <h3 className="text-2xl font-bold mb-2">The Hangover Sessions</h3>
             <p className="text-gray-600 text-sm">
               Sunday mornings at Hyde Park Book Club, Leeds
             </p>
           </div>
 
-          {/* Partners & Social Links */}
-          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-            {/* Partner Logos */}
-            <a
-              href="https://www.hydeparkbookclub.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-70 hover:opacity-100 transition-opacity"
-              aria-label="Hyde Park Book Club"
-            >
-              <img
-                src="/book-club-logo.png"
-                alt="Hyde Park Book Club"
-                className="h-8 w-auto"
-              />
-            </a>
-            <a
-              href="https://www.privateregcords.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-70 hover:opacity-100 transition-opacity"
-              aria-label="Private Regcords"
-            >
-              <img
-                src="/regcords-logo.png"
-                alt="Private Regcords"
-                className="h-8 w-auto"
-              />
-            </a>
+          {/* Credits - Text based, mobile friendly */}
+          <div className="text-center space-y-2 text-sm text-gray-600 max-w-2xl">
+            <p>
+              <a
+                href="https://www.lamplightdigital.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Site by Lamplight Digital
+              </a>
+            </p>
+            <p>Art and Design by Max Levi Stokes</p>
+            <p>
+              <a
+                href="https://www.instagram.com/d.k.s.capture"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Videography by d.k.s.capture
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://www.instagram.com/evanjmartinproductions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Production and mixing by Evan J. Martin
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://www.privateregcords.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Curation by Private Regcords
+              </a>
+            </p>
+            <p>
+              Hosted by{" "}
+              <a
+                href="https://www.instagram.com/private_r3g"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Reg Vardy
+              </a>{" "}
+              and{" "}
+              <a
+                href="https://www.hydeparkbookclub.co.uk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-brand-orange transition-colors"
+              >
+                Hyde Park Book Club
+              </a>
+            </p>
+          </div>
 
-            {/* Text Links */}
-            <a
-              href="https://www.instagram.com/evanjmartinproductions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-brand-orange transition-colors text-sm"
-            >
-              Evan J. Martin Productions
-            </a>
-            <a
-              href="https://www.instagram.com/d.k.s.capture"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-brand-orange transition-colors text-sm"
-            >
-              D.K.S.Capture
-            </a>
-
-            {/* Social Icons */}
+          {/* Social Icons */}
+          <div className="flex items-center gap-6">
             <a
               href="https://www.youtube.com/@HangoverSessions"
               target="_blank"
@@ -85,22 +103,22 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href="https://privateregcords.bandcamp.com"
+              href="https://thehangoversessions.bandcamp.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-brand-orange transition-colors"
-              aria-label="Private Regcords"
+              aria-label="Bandcamp"
             >
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z" />
               </svg>
             </a>
           </div>
-        </div>
 
-        {/* Copyright */}
-        <div className="mt-8 pt-8 border-t border-gray-300 text-center text-gray-600 text-sm">
-          <p>© {currentYear} The Hangover Sessions. All rights reserved.</p>
+          {/* Copyright */}
+          <div className="pt-6 border-t border-gray-300 text-center text-gray-600 text-sm w-full">
+            <p>© {currentYear} The Hangover Sessions. All rights reserved.</p>
+          </div>
         </div>
       </div>
     </footer>

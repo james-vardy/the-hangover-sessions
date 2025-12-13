@@ -6,6 +6,8 @@ export type Session = {
   venue?: string;
   image: string;
   youtubeUrl?: string;
+  bandcampUrl?: string;
+  spotifyReleaseUrl?: string;
   bio?: string;
   songs?: string[];
   sessionNotes?: string;

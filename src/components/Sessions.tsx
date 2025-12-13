@@ -15,27 +15,27 @@ export default function Sessions() {
         <img
           src="/Hangover sessions-11.png"
           alt=""
-          className="absolute top-10 left-10 w-32 h-32 rotate-12"
+          className="absolute top-10 left-10 w-32 h-32 rotate-12 hidden md:block opacity-70"
         />
         <img
           src="/Hangover sessions-13.png"
           alt=""
-          className="absolute top-1/4 right-20 w-40 h-40 -rotate-6"
+          className="absolute top-1/4 right-20 w-40 h-40 -rotate-6 hidden lg:block opacity-70"
         />
         <img
           src="/Hangover sessions-15.png"
           alt=""
-          className="absolute bottom-1/3 left-1/4 w-24 h-24 rotate-45"
+          className="absolute bottom-1/3 left-1/4 w-24 h-24 rotate-45 hidden md:block opacity-70"
         />
         <img
           src="/Hangover sessions-17.png"
           alt=""
-          className="absolute bottom-20 right-1/3 w-32 h-32 -rotate-12"
+          className="absolute bottom-20 right-1/3 w-32 h-32 -rotate-12 hidden lg:block opacity-70"
         />
         <img
           src="/Hangover sessions-19.png"
           alt=""
-          className="absolute top-1/2 right-10 w-28 h-28 rotate-6"
+          className="absolute top-1/2 right-10 w-28 h-28 rotate-6 hidden md:block opacity-70"
         />
       </div>
 
@@ -72,7 +72,7 @@ export default function Sessions() {
               <img
                 src="/Hangover sessions-11.png"
                 alt=""
-                className="w-16 h-16"
+                className="w-16 h-16 hidden sm:block"
               />
               <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">
                 Session Archive
@@ -80,7 +80,7 @@ export default function Sessions() {
               <img
                 src="/Hangover sessions-13.png"
                 alt=""
-                className="w-16 h-16"
+                className="w-16 h-16 hidden sm:block"
               />
             </div>
           </div>

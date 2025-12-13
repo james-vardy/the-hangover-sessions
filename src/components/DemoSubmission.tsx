@@ -51,12 +51,12 @@ export default function DemoSubmission() {
       <img
         src="/Hangover sessions-15.png"
         alt=""
-        className="absolute top-8 left-8 w-24 h-24 rotate-12"
+        className="absolute top-8 left-8 w-24 h-24 rotate-12 hidden md:block opacity-70"
       />
       <img
         src="/Hangover sessions-17.png"
         alt=""
-        className="absolute bottom-8 right-8 w-24 h-24 -rotate-12"
+        className="absolute bottom-8 right-8 w-24 h-24 -rotate-12 hidden md:block opacity-70"
       />
 
       <div className="container mx-auto px-6 relative z-10">
