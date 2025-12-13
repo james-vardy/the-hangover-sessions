@@ -44,7 +44,10 @@ export default function MailingList() {
   };
 
   return (
-    <section className="py-20 bg-brand-green text-white relative overflow-hidden">
+    <section
+      className="py-20 bg-brand-green text-white relative overflow-hidden"
+      id="mailing-list"
+    >
       {/* Decorative icons */}
       <img
         src="/Hangover sessions-11.png"
