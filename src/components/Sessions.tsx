@@ -11,7 +11,7 @@ export default function Sessions() {
       className="py-20 bg-brand-cream relative overflow-hidden"
     >
       {/* Decorative background icons */}
-      <div className="absolute inset-0 pointer-events-none opacity-20">
+      <div className="absolute inset-0 pointer-events-none">
         <img
           src="/Hangover sessions-11.png"
           alt=""
@@ -72,7 +72,7 @@ export default function Sessions() {
               <img
                 src="/Hangover sessions-11.png"
                 alt=""
-                className="w-16 h-16 opacity-60"
+                className="w-16 h-16"
               />
               <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">
                 Session Archive
@@ -80,7 +80,7 @@ export default function Sessions() {
               <img
                 src="/Hangover sessions-13.png"
                 alt=""
-                className="w-16 h-16 opacity-60"
+                className="w-16 h-16"
               />
             </div>
           </div>
