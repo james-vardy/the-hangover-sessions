@@ -20,13 +20,10 @@ export default function MailingList() {
     };
 
     try {
-      const response = await fetch("/send-email", {
+      const response = await fetch("/mailing-list", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "mailing-list",
-          ...emailData,
-        }),
+        body: JSON.stringify(emailData),
       });
 
       if (!response.ok) {
