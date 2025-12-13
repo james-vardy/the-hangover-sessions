@@ -152,12 +152,11 @@ export async function onRequestPost(context: any) {
                 <li>Special events and announcements</li>
                 <li>New music releases on Bandcamp and Spotify</li>
               </ul>
-              <p>Stay tuned for good vibes!</p>
               <p>In the meantime:</p>
               <ul>
                 <li>Follow us on <a href="https://www.instagram.com/thehangoversessions">Instagram</a></li>
                 <li>Subscribe on <a href="https://www.youtube.com/@HangoverSessions">YouTube</a></li>
-                <li>Check out releases on <a href="https://privateregcords.bandcamp.com">Bandcamp</a></li>
+                <li>Check out releases on <a href="https://thehangoversessions.bandcamp.com">Bandcamp</a></li>
               </ul>
             </div>
             <div class="footer">
@@ -178,8 +177,6 @@ We'll keep you updated on:
 - New video releases on YouTube
 - Special events and announcements
 - New music releases on Bandcamp and Spotify
-
-Stay tuned for good vibes!
 
 Follow us:
 - Instagram: https://www.instagram.com/thehangoversessions

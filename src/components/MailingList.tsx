@@ -67,7 +67,7 @@ export default function MailingList() {
           </h2>
           <p className="text-white/90 mb-8 text-lg">
             Get notified about upcoming sessions, new releases, and special
-            events. No spam, just good vibes.
+            events.
           </p>
 
           {submitted && (
