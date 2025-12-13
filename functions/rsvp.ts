@@ -51,6 +51,9 @@ export async function onRequestPost(context: any) {
         {
           Email: "rsvp@thehangoversessions.co.uk",
         },
+        {
+          Email: "thehangoversessions@gmail.com",
+        },
       ],
       Subject: `RSVP: ${session.artist}`,
       HTMLPart: `

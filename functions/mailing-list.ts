@@ -189,9 +189,60 @@ https://thehangoversessions.co.uk
       `.trim(),
     };
 
-    // Send the email
+    // Admin notification email
+    const adminEmail = {
+      From: {
+        Email: env.MAILJET_FROM_EMAIL || "noreply@thehangoversessions.co.uk",
+        Name: "The Hangover Sessions",
+      },
+      To: [
+        {
+          Email: "thehangoversessions@gmail.com",
+        },
+      ],
+      Subject: "New Mailing List Subscriber",
+      HTMLPart: `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .content { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+            .field { margin-bottom: 15px; }
+            .label { font-weight: 600; color: #555; }
+            .value { margin-top: 5px; }
+            a { color: #FF6B35; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="content">
+              <h2>New Mailing List Subscriber</h2>
+              <div class="field">
+                <div class="label">Name:</div>
+                <div class="value">${name}</div>
+              </div>
+              <div class="field">
+                <div class="label">Email:</div>
+                <div class="value"><a href="mailto:${email}">${email}</a></div>
+              </div>
+            </div>
+          </div>
+        </body>
+        </html>
+      `,
+      TextPart: `
+New Mailing List Subscriber
+
+Name: ${name}
+Email: ${email}
+      `.trim(),
+    };
+
+    // Send both emails
     const emailPayload = {
-      Messages: [confirmationEmail],
+      Messages: [confirmationEmail, adminEmail],
     };
 
     await fetch("https://api.mailjet.com/v3.1/send", {
