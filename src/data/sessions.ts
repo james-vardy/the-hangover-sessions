@@ -88,7 +88,7 @@ export const sessions: Session[] = [
     date: "2026-01-18",
     displayDate: "January 18, 2026",
     venue: "Hyde Park Book Club",
-    image: "/artists/finn-shannon.jpg",
+    image: "/artists/finn-shannon.png",
   },
   {
     slug: "lobjectif",
@@ -104,15 +104,15 @@ export const sessions: Session[] = [
     date: "2026-02-01",
     displayDate: "February 1, 2026",
     venue: "Hyde Park Book Club",
-    image: "/artists/regtown-special.jpg",
+    image: "/artists/small-distractions.png",
   },
   {
     slug: "tidetied",
-    artist: "TideTied",
+    artist: "TIDETIED",
     date: "2026-02-15",
     displayDate: "February 15, 2026",
     venue: "Hyde Park Book Club",
-    image: "/artists/tidetied.avif",
+    image: "/artists/tidetied.png",
   },
   {
     slug: "since-torino",

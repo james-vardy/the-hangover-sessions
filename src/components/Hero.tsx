@@ -1,3 +1,29 @@
+function YouTubeIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+    </svg>
+  );
+}
+
+function BandcampIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M0 18.75l7.437-13.5H24l-7.438 13.5H0z" />
+    </svg>
+  );
+}
+
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark text-white overflow-hidden">
@@ -22,6 +48,33 @@ export default function Hero() {
           alt="The Hangover Sessions"
           className="w-80 md:w-96 lg:w-[28rem] drop-shadow-2xl"
         />
+
+        {/* Social buttons */}
+        <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 mt-6">
+          <a
+            href="https://www.youtube.com/@hangoversessions"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-brand-cream/90 hover:bg-brand-cream text-brand-dark px-3 py-2 md:px-4 md:py-2.5 rounded transition-all duration-300 hover:scale-105"
+          >
+            <YouTubeIcon className="w-5 h-5 md:w-6 md:h-6" />
+            <span className="text-sm md:text-base font-medium">
+              Watch on YouTube
+            </span>
+          </a>
+          <a
+            href="https://thehangoversessions.bandcamp.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-brand-cream/90 hover:bg-brand-cream text-brand-dark px-3 py-2 md:px-4 md:py-2.5 rounded transition-all duration-300 hover:scale-105"
+          >
+            <BandcampIcon className="w-5 h-5 md:w-6 md:h-6" />
+            <span className="text-sm md:text-base font-medium">
+              Listen on Bandcamp
+            </span>
+          </a>
+        </div>
+
         <p className="mt-6 text-center text-white/90 text-lg md:text-xl max-w-xl font-light drop-shadow-lg">
           Intimate Sunday-morning live sessions, recorded in front of an
           audience at{" "}
