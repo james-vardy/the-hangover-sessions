@@ -1,9 +1,13 @@
-import { getUpcomingSessions, getPastSessions } from "../data/sessions";
-import SessionCard from "./SessionCard";
+import { getUpcomingSessions, Session } from "../data/sessions";
+
+// Convert ISO date (YYYY-MM-DD) to poster filename format (dd-mm-yyyy.png)
+function getPosterPath(session: Session): string {
+  const [year, month, day] = session.date.split("-");
+  return `/posters/${day}-${month}-${year}.png`;
+}
 
 export default function Sessions() {
-  const upcomingSessions = getUpcomingSessions();
-  const pastSessions = getPastSessions();
+  const upcomingSessions = getUpcomingSessions().slice(0, 2); // Only next 2
 
   return (
     <section
@@ -53,73 +57,18 @@ export default function Sessions() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
               {upcomingSessions.map((session) => (
-                <SessionCard
+                <img
                   key={session.slug}
-                  session={session}
-                  variant="upcoming"
+                  src={getPosterPath(session)}
+                  alt={`${session.artist} - ${session.displayDate}`}
+                  className="w-full max-w-md rounded-lg shadow-xl"
                 />
               ))}
             </div>
           </div>
         )}
-
-        {/* Archive */}
-        <div id="archive">
-          <div className="text-center mb-12 relative">
-            <div className="flex items-center justify-center gap-4 mb-4">
-              <img
-                src="/Hangover sessions-11.png"
-                alt=""
-                className="w-16 h-16 hidden sm:block"
-              />
-              <h2 className="text-3xl md:text-4xl font-bold text-brand-dark">
-                Session Archive
-              </h2>
-              <img
-                src="/Hangover sessions-13.png"
-                alt=""
-                className="w-16 h-16 hidden sm:block"
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {pastSessions.map((session) => (
-              <SessionCard
-                key={session.slug}
-                session={session}
-                variant="archive"
-              />
-            ))}
-          </div>
-
-          {/* YouTube CTA */}
-          <div className="text-center mt-12">
-            <a
-              href="https://www.youtube.com/@HangoverSessions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-brand-orange hover:text-brand-orange/80 font-semibold text-lg transition-colors"
-            >
-              View all on YouTube
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
