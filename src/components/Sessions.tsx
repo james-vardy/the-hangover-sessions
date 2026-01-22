@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getUpcomingSessions, Session } from "../data/sessions";
 
 // Convert ISO date (YYYY-MM-DD) to poster filename format (dd-mm-yyyy.png)
@@ -8,11 +9,21 @@ function getPosterPath(session: Session): string {
 
 export default function Sessions() {
   const upcomingSessions = getUpcomingSessions().slice(0, 2); // Only next 2
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (slug: string) => {
+    setFailedImages((prev) => new Set(prev).add(slug));
+  };
+
+  // Filter out sessions with failed poster images
+  const validSessions = upcomingSessions.filter(
+    (session) => !failedImages.has(session.slug)
+  );
 
   return (
     <section
       id="sessions"
-      className="py-20 bg-brand-cream relative overflow-hidden"
+      className="pt-20 pb-10 bg-brand-cream relative overflow-hidden"
     >
       {/* Decorative background icons */}
       <div className="absolute inset-0 pointer-events-none">
@@ -45,7 +56,7 @@ export default function Sessions() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Upcoming Sessions */}
-        {upcomingSessions.length > 0 && (
+        {validSessions.length > 0 && (
           <div className="mb-20">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
@@ -58,12 +69,13 @@ export default function Sessions() {
             </div>
 
             <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-              {upcomingSessions.map((session) => (
+              {validSessions.map((session) => (
                 <img
                   key={session.slug}
                   src={getPosterPath(session)}
                   alt={`${session.artist} - ${session.displayDate}`}
                   className="w-full max-w-md rounded-lg shadow-xl"
+                  onError={() => handleImageError(session.slug)}
                 />
               ))}
             </div>
