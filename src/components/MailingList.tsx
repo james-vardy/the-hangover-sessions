@@ -50,12 +50,12 @@ export default function MailingList() {
     >
       {/* Decorative icons */}
       <img
-        src="/Hangover sessions-11.png"
+        src="/bg-assets/mail.png"
         alt=""
         className="absolute top-10 right-10 w-32 h-32 rotate-12 opacity-20 hidden md:block"
       />
       <img
-        src="/Hangover sessions-13.png"
+        src="/bg-assets/sun.png"
         alt=""
         className="absolute bottom-10 left-10 w-32 h-32 -rotate-12 opacity-20 hidden md:block"
       />

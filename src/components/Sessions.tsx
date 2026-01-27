@@ -17,7 +17,7 @@ export default function Sessions() {
 
   // Filter out sessions with failed poster images
   const validSessions = upcomingSessions.filter(
-    (session) => !failedImages.has(session.slug)
+    (session) => !failedImages.has(session.slug),
   );
 
   return (
@@ -28,29 +28,14 @@ export default function Sessions() {
       {/* Decorative background icons */}
       <div className="absolute inset-0 pointer-events-none">
         <img
-          src="/Hangover sessions-11.png"
+          src="/bg-assets/drum.png"
           alt=""
           className="absolute top-10 left-10 w-32 h-32 rotate-12 hidden md:block opacity-70"
         />
         <img
-          src="/Hangover sessions-13.png"
+          src="/bg-assets/sax.png"
           alt=""
-          className="absolute top-1/4 right-20 w-40 h-40 -rotate-6 hidden lg:block opacity-70"
-        />
-        <img
-          src="/Hangover sessions-15.png"
-          alt=""
-          className="absolute bottom-1/3 left-1/4 w-24 h-24 rotate-45 hidden md:block opacity-70"
-        />
-        <img
-          src="/Hangover sessions-17.png"
-          alt=""
-          className="absolute bottom-20 right-1/3 w-32 h-32 -rotate-12 hidden lg:block opacity-70"
-        />
-        <img
-          src="/Hangover sessions-19.png"
-          alt=""
-          className="absolute top-1/2 right-10 w-28 h-28 rotate-6 hidden md:block opacity-70"
+          className="absolute bottom-20 right-10 w-40 h-40 -rotate-6 hidden lg:block opacity-70"
         />
       </div>
 

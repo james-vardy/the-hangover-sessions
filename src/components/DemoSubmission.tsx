@@ -49,12 +49,12 @@ export default function DemoSubmission() {
     <section id="demo" className="py-20 bg-white relative overflow-hidden">
       {/* Decorative corner icons */}
       <img
-        src="/Hangover sessions-15.png"
+        src="/bg-assets/hand.png"
         alt=""
         className="absolute top-8 left-8 w-24 h-24 rotate-12 hidden md:block opacity-70"
       />
       <img
-        src="/Hangover sessions-17.png"
+        src="/bg-assets/microphone.png"
         alt=""
         className="absolute bottom-8 right-8 w-24 h-24 -rotate-12 hidden md:block opacity-70"
       />

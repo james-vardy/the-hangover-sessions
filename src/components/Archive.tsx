@@ -13,7 +13,7 @@ export default function Archive() {
         <div className="text-center mb-12 relative">
           <div className="flex items-center justify-center gap-4 mb-4">
             <img
-              src="/Hangover sessions-11.png"
+              src="/bg-assets/drum.png"
               alt=""
               className="w-16 h-16 hidden sm:block"
             />
@@ -21,7 +21,7 @@ export default function Archive() {
               Session Archive
             </h2>
             <img
-              src="/Hangover sessions-13.png"
+              src="/bg-assets/sax.png"
               alt=""
               className="w-16 h-16 hidden sm:block"
             />
@@ -30,11 +30,7 @@ export default function Archive() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {pastSessions.map((session) => (
-            <SessionCard
-              key={session.slug}
-              session={session}
-              variant="archive"
-            />
+            <SessionCard key={session.slug} session={session} />
           ))}
         </div>
 
