@@ -20,6 +20,11 @@ export default function Sessions() {
     (session) => !failedImages.has(session.slug),
   );
 
+  // Nothing upcoming (or every poster failed to load) - hide the section entirely
+  if (validSessions.length === 0) {
+    return null;
+  }
+
   return (
     <section
       id="sessions"
@@ -40,32 +45,29 @@ export default function Sessions() {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Upcoming Sessions */}
-        {validSessions.length > 0 && (
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
-                Upcoming Sessions
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Join us at Hyde Park Book Club for our next intimate live
-                performances. Doors open at 10:30am. It's free entry!
-              </p>
-            </div>
-
-            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
-              {validSessions.map((session) => (
-                <img
-                  key={session.slug}
-                  src={getPosterPath(session)}
-                  alt={`${session.artist} - ${session.displayDate}`}
-                  className="w-full max-w-md rounded-lg shadow-xl"
-                  onError={() => handleImageError(session.slug)}
-                />
-              ))}
-            </div>
+        <div className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+              Upcoming Sessions
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Join us at Hyde Park Book Club for our next intimate live
+              performances. Doors open at 10:30am. It's free entry!
+            </p>
           </div>
-        )}
+
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+            {validSessions.map((session) => (
+              <img
+                key={session.slug}
+                src={getPosterPath(session)}
+                alt={`${session.artist} - ${session.displayDate}`}
+                className="w-full max-w-md rounded-lg shadow-xl"
+                onError={() => handleImageError(session.slug)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

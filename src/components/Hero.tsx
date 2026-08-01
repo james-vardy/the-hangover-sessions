@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function YouTubeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -25,6 +27,8 @@ function BandcampIcon({ className }: { className?: string }) {
 }
 
 export default function Hero() {
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-brand-dark text-white overflow-hidden">
       {/* Background Video */}
@@ -33,10 +37,25 @@ export default function Hero() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        preload="auto"
+        poster="/hero/poster.jpg"
+        onCanPlay={() => setVideoReady(true)}
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          videoReady ? "opacity-100" : "opacity-0"
+        }`}
       >
         <source src="/hero/video.mp4" type="video/mp4" />
       </video>
+
+      {/* Poster frame shown while the video buffers */}
+      <img
+        src="/hero/poster.jpg"
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+          videoReady ? "opacity-0" : "opacity-100"
+        }`}
+      />
 
       {/* Dark overlay for readability */}
       <div className="absolute inset-0 bg-black/60" />
