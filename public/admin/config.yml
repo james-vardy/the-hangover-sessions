@@ -1,0 +1,75 @@
+backend:
+  name: github
+  repo: james-vardy/the-hangover-sessions
+  branch: production
+
+site_url: https://thehangoversessions.co.uk
+publish_mode: simple
+
+media_folder: "public/posters"
+public_folder: "/posters"
+
+collections:
+  - name: "sessions"
+    label: "Sessions"
+    folder: "content/sessions"
+    create: true
+    format: json
+    identifier_field: artist
+    summary: "{{artist}} - {{date}}"
+    fields:
+      - { name: artist, label: "Artist / Band Name", widget: string }
+      - {
+          name: date,
+          label: "Date",
+          widget: datetime,
+          type: date,
+          format: "YYYY-MM-DD",
+          hint: "Whether this shows as upcoming or in the archive is worked out from this date automatically.",
+        }
+      - {
+          name: venue,
+          label: "Venue",
+          widget: string,
+          required: false,
+          default: "Hyde Park Book Club",
+        }
+      - {
+          name: poster,
+          label: "Poster Image",
+          widget: image,
+          required: false,
+          hint: "Poster artwork for an upcoming session.",
+        }
+      - {
+          name: youtubeUrl,
+          label: "YouTube URL",
+          widget: string,
+          required: false,
+          hint: "Once the session has happened, add the video link here to publish it in the archive.",
+        }
+      - {
+          name: bandcampUrl,
+          label: "Bandcamp URL",
+          widget: string,
+          required: false,
+        }
+      - {
+          name: spotifyReleaseUrl,
+          label: "Spotify Release URL",
+          widget: string,
+          required: false,
+        }
+      - {
+          name: songs,
+          label: "Songs Performed",
+          widget: list,
+          required: false,
+          field: { name: song, label: "Song", widget: string },
+        }
+      - {
+          name: sessionNotes,
+          label: "Session Notes",
+          widget: text,
+          required: false,
+        }

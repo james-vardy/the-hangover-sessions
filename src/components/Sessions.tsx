@@ -1,11 +1,5 @@
 import { useState } from "react";
-import { getUpcomingSessions, Session } from "../data/sessions";
-
-// Convert ISO date (YYYY-MM-DD) to poster filename format (dd-mm-yyyy.png)
-function getPosterPath(session: Session): string {
-  const [year, month, day] = session.date.split("-");
-  return `/posters/${day}-${month}-${year}.png`;
-}
+import { getUpcomingSessions } from "../data/sessions";
 
 export default function Sessions() {
   const upcomingSessions = getUpcomingSessions().slice(0, 2); // Only next 2
@@ -15,9 +9,9 @@ export default function Sessions() {
     setFailedImages((prev) => new Set(prev).add(slug));
   };
 
-  // Filter out sessions with failed poster images
+  // Filter out sessions with no poster or a poster image that failed to load
   const validSessions = upcomingSessions.filter(
-    (session) => !failedImages.has(session.slug),
+    (session) => session.poster && !failedImages.has(session.slug),
   );
 
   // Nothing upcoming (or every poster failed to load) - hide the section entirely
@@ -60,7 +54,7 @@ export default function Sessions() {
             {validSessions.map((session) => (
               <img
                 key={session.slug}
-                src={getPosterPath(session)}
+                src={session.poster}
                 alt={`${session.artist} - ${session.displayDate}`}
                 className="w-full max-w-md rounded-lg shadow-xl"
                 onError={() => handleImageError(session.slug)}
